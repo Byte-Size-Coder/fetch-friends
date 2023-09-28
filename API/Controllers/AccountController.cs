@@ -56,7 +56,7 @@ public class AccountController : BaseApiController
 
         if (fetchedUser == null)
         {
-            return Unauthorized("invaid credentials - username");
+            return Unauthorized("Invalid login credentials");
         }
 
         using var hmac = new HMACSHA512(fetchedUser.PasswordSalt);
@@ -67,7 +67,7 @@ public class AccountController : BaseApiController
         {
             if (computedHash[i] != fetchedUser.PasswordHash[i])
             {
-                return Unauthorized("invaid credentials - password");
+                return Unauthorized("Invalid login credentials");
             }
         }
 
